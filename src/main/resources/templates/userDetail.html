@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" type="text/css">
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.js"></script>
+    <link rel="stylesheet" href="../src/css/layui.css">
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">layui 后台布局</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-right">
+
+                <li class="layui-nav-item"><span id="userNameSpan" th:text="${userName}" hidden></span><a href="/carManage/login">注销</a></li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">汽车管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a th:href="@{'/carManage/index?userName='+${userName}}">查看汽车信息</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">个人信息</a>
+                        <dl class="layui-nav-child">
+                            <dd> <a th:href="@{'/carManage/userDetail?userName='+${userName}}">基本资料</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-body">
+            <div style="padding: 15px;">
+                <table class="layui-table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label>用户ID</label>
+                        </td>
+                        <td>
+                            <span th:text="${user.getId()}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>用户名</label>
+                        </td>
+                        <td>
+                            <span th:text="${user.getUserName()}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>用户昵称</label>
+                        </td>
+                        <td>
+                            <span th:text="${user.getNickName()}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>真实姓名</label>
+                        </td>
+                        <td>
+                            <span th:text="${user.getRealName()}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>性别</label>
+                        </td>
+                        <td>
+                            <span th:if="${user.getSex() eq 1}">男</span>
+                            <span th:if="${user.getSex() eq 0}">女</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © 2020 方泽宁 软工1702 8002117077
+        </div>
+    </div>
+
+
+
+</body>
+</html>
